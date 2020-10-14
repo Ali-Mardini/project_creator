@@ -1,5 +1,10 @@
 #!/bin/bash 
-# This script will create dotnet core project with onion architecture 
+###################################################################
+#Script Name	: Project Creator                                                                                     
+#Description	: This script will create dotnet core project with onion architecture                                                                                                                                                                    
+#Author       	: Ali Mardini                                             
+#Email         	: mardinia6@gmail.com                                           
+###################################################################
 
 # read the project name 
 echo Please enter the project name:
