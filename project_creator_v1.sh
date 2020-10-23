@@ -41,53 +41,53 @@ if [[ $project_name != "" ]]; then
 
     # Create domain project 
     echo creating $project_name Domain .........
-    dotnet new classlib -n $project_name.Domain -o Domain/$project_name.Domain
+    dotnet new classlib -n $project_name.domain -o Domain/$project_name.domain
 
-    echo adding $project_name.Domain to solution ........
-    dotnet sln add Domain/$project_name.Domain/$project_name.Domain.csproj
+    echo adding $project_name.domain to solution ........
+    dotnet sln add Domain/$project_name.domain/$project_name.domain.csproj
 
     #Create Infrastructure project
     echo creating $project_name Infrastructure .........
-    dotnet new classlib -n $project_name.Infrastructure -o Infrastructure/$project_name.Infrastructure
+    dotnet new classlib -n $project_name.infrastructure -o Infrastructure/$project_name.infrastructure
 
-    echo adding $project_name.Infrastructure to solution ........
-    dotnet sln add Infrastructure/$project_name.Infrastructure/$project_name.Infrastructure.csproj
+    echo adding $project_name.infrastructure to solution ........
+    dotnet sln add Infrastructure/$project_name.infrastructure/$project_name.infrastructure.csproj
 
     #Create Interfaces project
     echo creating $project_name Interfaces .........
-    dotnet new classlib -n $project_name.Interfaces -o Interfaces/$project_name.Interfaces
+    dotnet new classlib -n $project_name.interfaces -o Interfaces/$project_name.interfaces
 
-    echo adding $project_name.Interfaces to solution ........
-    dotnet sln add Interfaces/$project_name.Interfaces/$project_name.Interfaces.csproj
+    echo adding $project_name.interfaces to solution ........
+    dotnet sln add Interfaces/$project_name.interfaces/$project_name.interfaces.csproj
 
     #Create Services project
     echo creating $project_name Services .........
-    dotnet new classlib -n $project_name.Services -o Services/$project_name.Services
+    dotnet new classlib -n $project_name.services -o Services/$project_name.services
 
-    echo adding $project_name.Services to solution ........
-    dotnet sln add Services/$project_name.Services/$project_name.Services.csproj
+    echo adding $project_name.services to solution ........
+    dotnet sln add Services/$project_name.services/$project_name.services.csproj
 
     #Create API project
     echo creating $project_name API .........
-    dotnet new webapi -n $project_name.API -o API/$project_name.API
+    dotnet new webapi -n $project_name.api -o API/$project_name.api
 
-    echo adding $project_name.API to solution ........
-    dotnet sln add API/$project_name.API/$project_name.API.csproj
+    echo adding $project_name.api to solution ........
+    dotnet sln add API/$project_name.api/$project_name.api.csproj
 
     #Create FunctionalTests project
     echo creating $project_name FunctionalTests .........
-    dotnet new xunit -n $project_name.FunctionalTests -o FunctionalTests/$project_name.FunctionalTests
+    dotnet new xunit -n $project_name.functional-tests -o FunctionalTests/$project_name.functional-tests
 
-    echo adding $project_name.FunctionalTests to solution ........
-    dotnet sln add FunctionalTests/$project_name.FunctionalTests/$project_name.FunctionalTests.csproj
+    echo adding $project_name.functional-tests to solution ........
+    dotnet sln add FunctionalTests/$project_name.functional-tests/$project_name.functional-tests.csproj
 
 
     #Create UnitTests project
     echo creating $project_name UnitTests .........
-    dotnet new xunit -n $project_name.UnitTests -o UnitTests/$project_name.UnitTests
+    dotnet new xunit -n $project_name.unit-tests -o UnitTests/$project_name.unit-tests
 
-    echo adding $project_name.UnitTests to solution ........
-    dotnet sln add UnitTests/$project_name.UnitTests/$project_name.UnitTests.csproj
+    echo adding $project_name.unit-tests to solution ........
+    dotnet sln add UnitTests/$project_name.unit-tests/$project_name.unit-tests.csproj
 
     #Create .gitignore file 
     echo creating .gitignore file ..........
@@ -97,26 +97,26 @@ if [[ $project_name != "" ]]; then
     '.vs' \
     '.vscode' \
     '#API' \
-    'API/'$project_name'.API/bin' \
-    'API/'$project_name'.API/obj' \
+    'API/'$project_name'.api/bin' \
+    'API/'$project_name'.api/obj' \
     '#Domain' \
-    'Domain/'$project_name'.Domain/bin' \
-    'Domain/'$project_name'.Domain/obj' \
+    'Domain/'$project_name'.domain/bin' \
+    'Domain/'$project_name'.domain/obj' \
     '#Infrastructure' \
-    'Infrastructure/'$project_name'.Infrastructure/bin' \
-    'Infrastructure/'$project_name'.Infrastructure/obj' \
+    'Infrastructure/'$project_name'.infrastructure/bin' \
+    'Infrastructure/'$project_name'.infrastructure/obj' \
     '#Interfaces' \
-    'Interfaces/'$project_name'.Interfaces/bin' \
-    'Interfaces/'$project_name'.Interfaces/obj' \
+    'Interfaces/'$project_name'.interfaces/bin' \
+    'Interfaces/'$project_name'.interfaces/obj' \
     '#Services' \
-    'Services/'$project_name'.Services/bin' \
-    'Services/'$project_name'.Services/obj' \
+    'Services/'$project_name'.services/bin' \
+    'Services/'$project_name'.services/obj' \
     '#FunctionalTests' \
-    'FunctionalTests/'$project_name'.FunctionalTests/bin' \
-    'FunctionalTests/'$project_name'.FunctionalTests/obj' \
+    'FunctionalTests/'$project_name'.functional-tests/bin' \
+    'FunctionalTests/'$project_name'.functional-tests/obj' \
     '#UnitTests' \
-    'UnitTests/'$project_name'.UnitTests/bin' \
-    'UnitTests/'$project_name'.UnitTests/obj' > .gitignore
+    'UnitTests/'$project_name'.unit-tests/bin' \
+    'UnitTests/'$project_name'.unit-tests/obj' > .gitignore
 
      #Create UI project if needed
     echo "do you need any UI project (y/n)?"
@@ -134,15 +134,15 @@ if [[ $project_name != "" ]]; then
         if [[ "$ui_project" = "1" ]]
         then
             echo "Creating the web mvc project"
-            dotnet new mvc -n $project_name.UI -o UI/$project_name.UI
-            echo adding $project_name.UI to solution ........
-            dotnet sln add UI/$project_name.UI/$project_name.UI.csproj
+            dotnet new mvc -n $project_name.ui -o UI/$project_name.ui
+            echo adding $project_name.ui to solution ........
+            dotnet sln add UI/$project_name.ui/$project_name.ui.csproj
 
             # add files to .gitignore
             echo "writing in .gitignore file ......"
             printf '%s\n' '#UI' \
-            'UI/'$project_name'.UI/bin' \
-            'UI/'$project_name'.UI/obj' >> .gitignore
+            'UI/'$project_name'.ui/bin' \
+            'UI/'$project_name'.ui/obj' >> .gitignore
 
         elif [[ "$ui_project" = "2" ]]
         then
