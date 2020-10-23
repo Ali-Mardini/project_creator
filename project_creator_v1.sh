@@ -68,12 +68,40 @@ if [[ $project_name != "" ]]; then
     dotnet sln add Services/$project_name.services/$project_name.services.csproj
 
     #Create API project
-    echo creating $project_name API .........
-    dotnet new webapi -n $project_name.api -o API/$project_name.api
+    echo "please select the number of the api project you want: "
 
-    echo adding $project_name.api to solution ........
-    dotnet sln add API/$project_name.api/$project_name.api.csproj
+    echo "[1] Api Project"
+    echo "[2] Identity Server"
+    read api_project
 
+    if [[ "$api_project" = "1" ]]
+        then
+            echo creating $project_name API .........
+            dotnet new webapi -n $project_name.api -o API/$project_name.api
+            echo adding $project_name.api to solution ........
+            dotnet sln add API/$project_name.api/$project_name.api.csproj
+
+            # add files to .gitignore
+            echo "writing in .gitignore file ......"
+            printf '%s\n' '#API' \
+            'API/'$project_name'.api/bin' \
+            'API/'$project_name'.api/obj' >> .gitignore
+
+    elif [[ "$api_project" = "2" ]]
+        then
+            echo creating $project_name Identity Server .........
+            dotnet new is4ef -n $project_name.api -o API/$project_name.api
+            echo adding $project_name.api to solution ........
+            dotnet sln add API/$project_name.api/$project_name.api.csproj
+
+            # add files to .gitignore
+            echo "writing in .gitignore file ......"
+            printf '%s\n' '#API' \
+            'API/'$project_name'.api/bin' \
+            'API/'$project_name'.api/obj' >> .gitignore
+    fi
+
+    
     #Create FunctionalTests project
     echo creating $project_name FunctionalTests .........
     dotnet new xunit -n $project_name.functional-tests -o FunctionalTests/$project_name.functional-tests
@@ -96,9 +124,6 @@ if [[ $project_name != "" ]]; then
     printf '%s\n' '#.Vs & .Vscode'\
     '.vs' \
     '.vscode' \
-    '#API' \
-    'API/'$project_name'.api/bin' \
-    'API/'$project_name'.api/obj' \
     '#Domain' \
     'Domain/'$project_name'.domain/bin' \
     'Domain/'$project_name'.domain/obj' \
